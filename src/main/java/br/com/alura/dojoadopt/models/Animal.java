@@ -43,7 +43,44 @@ public class Animal {
 
     @Deprecated
     public Animal() {
+        
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getMonthlyCost() {
+        return monthlyCost;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public AnimalType getType() {
+        return type;
+    }
+
+    public AnimalSize getSize() {
+        return size;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public Animal(String name, BigDecimal monthlyCost, LocalDate birthDate, AnimalType type, AnimalSize size, String photoURL) {
+        this.name = name;
+        this.monthlyCost = monthlyCost;
+        this.birthDate = birthDate;
+        this.type = type;
+        this.size = size;
+        this.photoURL = photoURL;
     }
 
     public enum AnimalType {

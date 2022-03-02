@@ -1,5 +1,6 @@
 package br.com.alura.dojoadopt.dtos;
 
+import br.com.alura.dojoadopt.models.Animal;
 import br.com.alura.dojoadopt.models.Animal.AnimalSize;
 import br.com.alura.dojoadopt.models.Animal.AnimalType;
 import org.hibernate.validator.constraints.URL;
@@ -80,5 +81,9 @@ public class NewAnimalForm {
 
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
+    }
+
+    public Animal toModel() {
+        return new Animal(name, monthlyCost, birthDate, type, size, photoURL);
     }
 }
