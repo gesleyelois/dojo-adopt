@@ -4,7 +4,6 @@ import br.com.alura.dojoadopt.models.Animal;
 import br.com.alura.dojoadopt.utils.YearsUtil;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class AnimalView {
 

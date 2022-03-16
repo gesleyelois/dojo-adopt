@@ -2,6 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<a href="/">Home</a> | <a href="/novo/animal">Novo Animal</a>
+
 <h1>Lista de animais</h1>
 
 <table>

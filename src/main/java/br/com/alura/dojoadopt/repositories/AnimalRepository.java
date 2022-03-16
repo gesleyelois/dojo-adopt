@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
+    boolean existsByNameAndType(String name, Animal.AnimalType animalType);
+
 }

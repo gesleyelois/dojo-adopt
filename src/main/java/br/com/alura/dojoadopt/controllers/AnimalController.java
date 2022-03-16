@@ -4,11 +4,12 @@ import br.com.alura.dojoadopt.dtos.AnimalView;
 import br.com.alura.dojoadopt.dtos.NewAnimalForm;
 import br.com.alura.dojoadopt.models.Animal;
 import br.com.alura.dojoadopt.repositories.AnimalRepository;
+import br.com.alura.dojoadopt.validators.NewAnimalFormValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +21,11 @@ public class AnimalController {
 
     public AnimalController(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
+    }
+
+    @InitBinder("newAnimalForm")
+    public void initBinderNewPlaceForm(WebDataBinder binder) {
+        binder.addValidators(new NewAnimalFormValidator(animalRepository));
     }
 
     @GetMapping("/novo/animal")
