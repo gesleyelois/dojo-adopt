@@ -47,4 +47,5 @@ public class TutorController {
         model.addAttribute("tutors", tutors);
         return "tutor/list";
     }
+
 }
