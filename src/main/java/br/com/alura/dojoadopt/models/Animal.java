@@ -1,5 +1,6 @@
 package br.com.alura.dojoadopt.models;
 
+import br.com.alura.dojoadopt.repositories.AdoptRepository;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -9,9 +10,12 @@ import java.time.LocalDate;
 
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 @Entity
-public class Animal {
+@Inheritance(strategy = SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+public abstract class Animal {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -73,6 +77,8 @@ public class Animal {
     public String getPhotoURL() {
         return photoURL;
     }
+
+    public abstract boolean canAdopt(Tutor tutor, AdoptRepository adoptRepository);
 
     public Animal(String name, BigDecimal monthlyCost, LocalDate birthDate, AnimalType type, AnimalSize size, String photoURL) {
         this.name = name;

@@ -19,12 +19,12 @@ public class AdoptService {
 
         if (adoptRepository.existsByTutorAndAnimal(tutor, animal)) return false;
 
-        BigDecimal monthlyCostTotal = getTotalPetExpenses(tutor).add(animal.getMonthlyCost());
+        BigDecimal monthlyCostTotal = totalMonthlyCostWithAnimal(tutor).add(animal.getMonthlyCost());
 
         return tutor.getSalary().compareTo(monthlyCostTotal) > 0;
     }
 
-    public BigDecimal getTotalPetExpenses(Tutor tutor) {
+    public BigDecimal totalMonthlyCostWithAnimal(Tutor tutor) {
         return adoptRepository.findByTutor(tutor).stream()
                 .map(Adopt::getAnimal)
                 .map(Animal::getMonthlyCost)

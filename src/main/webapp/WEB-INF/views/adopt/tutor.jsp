@@ -36,7 +36,7 @@
     <br>
     <br>
 
-    <strong>Total Gasto R$:</strong> ${totalPetExpenses}
+    <strong>Total Gasto R$:</strong> ${totalMonthlyCostWithAnimal}
 </div>
 
 <br>

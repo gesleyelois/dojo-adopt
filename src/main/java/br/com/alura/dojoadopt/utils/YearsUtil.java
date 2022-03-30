@@ -22,4 +22,5 @@ public class YearsUtil {
 
         return "%d anos".formatted(year);
     }
+
 }

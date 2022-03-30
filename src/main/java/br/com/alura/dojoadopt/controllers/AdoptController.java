@@ -1,8 +1,7 @@
 package br.com.alura.dojoadopt.controllers;
 
 import br.com.alura.dojoadopt.AdoptService;
-import br.com.alura.dojoadopt.dtos.AdoptForm;
-import br.com.alura.dojoadopt.dtos.AnimalView;
+import br.com.alura.dojoadopt.dtos.*;
 import br.com.alura.dojoadopt.exceptions.NotFoundException;
 import br.com.alura.dojoadopt.models.*;
 import br.com.alura.dojoadopt.repositories.*;
@@ -71,16 +70,16 @@ public class AdoptController {
     public String adoptedAnimals(@PathVariable Long id, Model model) {
         Tutor tutor = tutorRepository.findById(id).orElseThrow(NotFoundException::new);
 
-        BigDecimal totalPetExpenses = adoptService.getTotalPetExpenses(tutor);
+        BigDecimal totalMonthlyCostWithAnimal = adoptService.totalMonthlyCostWithAnimal(tutor);
 
-        List<AnimalView> animals = adoptRepository.findByTutor(tutor).stream()
+        List<AdoptAnimalView> animals = adoptRepository.findByTutor(tutor).stream()
                 .map(Adopt::getAnimal)
-                .map(AnimalView::new)
+                .map(AdoptAnimalView::new)
                 .toList();
 
         model.addAttribute("animals", animals);
         model.addAttribute("tutor", tutor);
-        model.addAttribute("totalPetExpenses", totalPetExpenses);
+        model.addAttribute("totalMonthlyCostWithAnimal", totalMonthlyCostWithAnimal);
         return "adopt/tutor";
     }
 

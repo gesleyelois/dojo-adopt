@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
+import static br.com.alura.dojoadopt.models.Tutor.TypeOfHousing.*;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -81,6 +83,34 @@ public class Tutor {
 
     public String getPhotoURL() {
         return photoURL;
+    }
+
+    public boolean isMoreThanEighteenYearsOld() {
+        return ChronoUnit.YEARS.between(birthDate, LocalDate.now()) > 18;
+    }
+
+    public boolean hasNameStartsWithLetter(String letter) {
+        return name.startsWith(letter);
+    }
+
+    public boolean isTypeOfHousingSitio() {
+        return SITIO.equals(typeOfHousing);
+    }
+
+    public boolean isTypeOfHousingHouseWithPool() {
+        return HOUSE_WITH_POOL.equals(typeOfHousing);
+    }
+
+    public boolean isTypeOfHousingApartment() {
+        return APARTMENT.equals(typeOfHousing);
+    }
+
+    public boolean hasSalaryGreaterThanFiftyThousand() {
+        return hasSalaryGreaterThan(new BigDecimal("50.000"));
+    }
+
+    private boolean hasSalaryGreaterThan(BigDecimal value) {
+        return salary.compareTo(value) > 0;
     }
 
     public enum TypeOfHousing {
