@@ -1,7 +1,6 @@
 package br.com.alura.dojoadopt.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDateTime;
 
 import static java.time.LocalDateTime.now;

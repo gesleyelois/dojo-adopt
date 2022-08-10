@@ -20,6 +20,6 @@ public interface AdoptRepository extends JpaRepository<Adopt, Long> {
     boolean tutorHasMoreThanThreeAdoptedDogs(@Param("tutor") Tutor tutor);
 
     @Query("SELECT COUNT(1) > 0 FROM Adopt a WHERE a.tutor=:tutor AND a.animal.type = 'DOG' and a.animal.size IN ('LARGE', 'GIANT')")
-    boolean tutorHasOnleOneLargeOrBigAdoptedDog(@Param("tutor") Tutor tutor);
+    boolean tutorHasOnlyOneLargeOrBigAdoptedDog(@Param("tutor") Tutor tutor);
 
 }

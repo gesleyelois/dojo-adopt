@@ -1,6 +1,6 @@
 package br.com.alura.dojoadopt.dtos;
 
-import br.com.alura.dojoadopt.models.Animal;
+import br.com.alura.dojoadopt.models.*;
 import br.com.alura.dojoadopt.models.Animal.AnimalSize;
 import br.com.alura.dojoadopt.models.Animal.AnimalType;
 import org.hibernate.validator.constraints.URL;
@@ -84,6 +84,14 @@ public class NewAnimalForm {
     }
 
     public Animal toModel() {
-        return new Animal(name, monthlyCost, birthDate, type, size, photoURL);
+        return switch (type) {
+            case FISH -> new Fish(name, monthlyCost, birthDate, size, photoURL);
+            case REPTILE -> new Reptile(name, monthlyCost, birthDate, size, photoURL);
+            case CAT -> new Cat(name, monthlyCost, birthDate, size, photoURL);
+            case DOG -> new Dog(name, monthlyCost, birthDate, size, photoURL);
+            case BIRD -> new Bird(name, monthlyCost, birthDate, size, photoURL);
+            case EXOTIC -> new Exotic(name, monthlyCost, birthDate, size, photoURL);
+            default -> throw new IllegalArgumentException("Unsupported type!");
+        };
     }
 }

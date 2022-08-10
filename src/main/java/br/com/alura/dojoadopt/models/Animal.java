@@ -33,8 +33,9 @@ public abstract class Animal {
     @PastOrPresent
     private LocalDate birthDate;
 
-    @NotNull
+//    @NotNull
     @Enumerated(STRING)
+    @Column(updatable = false, insertable = false)
     private AnimalType type;
 
     @NotNull
@@ -80,11 +81,10 @@ public abstract class Animal {
 
     public abstract boolean canAdopt(Tutor tutor, AdoptRepository adoptRepository);
 
-    public Animal(String name, BigDecimal monthlyCost, LocalDate birthDate, AnimalType type, AnimalSize size, String photoURL) {
+    public Animal(String name, BigDecimal monthlyCost, LocalDate birthDate, AnimalSize size, String photoURL) {
         this.name = name;
         this.monthlyCost = monthlyCost;
         this.birthDate = birthDate;
-        this.type = type;
         this.size = size;
         this.photoURL = photoURL;
     }

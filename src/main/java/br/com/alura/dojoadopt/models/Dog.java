@@ -4,9 +4,11 @@ import br.com.alura.dojoadopt.repositories.AdoptRepository;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("Dog")
+@DiscriminatorValue("DOG")
 public class Dog extends Animal {
 
     @Deprecated
@@ -14,8 +16,12 @@ public class Dog extends Animal {
         super();
     }
 
+    public Dog(String name, BigDecimal monthlyCost, LocalDate birthDate, AnimalSize size, String photoURL) {
+        super(name, monthlyCost, birthDate, size, photoURL);
+    }
+
     public boolean canAdopt(Tutor tutor, AdoptRepository adoptRepository) {
-        return tutor.isTypeOfHousingApartment() && adoptRepository.tutorHasOnleOneLargeOrBigAdoptedDog(tutor);
+        return tutor.isTypeOfHousingApartment() && adoptRepository.tutorHasOnlyOneLargeOrBigAdoptedDog(tutor);
     }
 
 }

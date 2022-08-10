@@ -21,7 +21,7 @@ public class AdoptService {
 
         BigDecimal monthlyCostTotal = totalMonthlyCostWithAnimal(tutor).add(animal.getMonthlyCost());
 
-        return tutor.getSalary().compareTo(monthlyCostTotal) > 0;
+        return tutor.getSalary().compareTo(monthlyCostTotal) > 0 && animal.canAdopt(tutor, adoptRepository);
     }
 
     public BigDecimal totalMonthlyCostWithAnimal(Tutor tutor) {
